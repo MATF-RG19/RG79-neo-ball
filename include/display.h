@@ -7,6 +7,7 @@
 
 #include "../include/floor.h"
 #include "../include/lighting.h"
+#include "../include/keyboard.h"
 
 void on_display(void);
 

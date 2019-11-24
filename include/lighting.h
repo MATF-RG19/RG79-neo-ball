@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 
-void set_lighting(void);
+void set_ball_lighting(void);
+void lighting(void);
+void platform_lighting(void);
 
 #endif

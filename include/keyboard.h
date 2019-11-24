@@ -6,7 +6,14 @@
 #include <GL/glut.h>
 
 #define ESC 27
-
+float zFront;
+float angle_forw;
+float angle_side;
+float zBack;
+float xLeft;
+float xRight;
+float yUp;
+float yDown;
 void on_keyboard(unsigned char key, int x, int y);
 
 #endif

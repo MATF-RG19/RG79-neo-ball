@@ -19,6 +19,8 @@ int main(int argc, char **argv)
     glClearColor(0, 0, 0, 0);
     glEnable(GL_DEPTH_TEST);
 
+    lighting();
+
     glutMainLoop();
 
     return 0;
