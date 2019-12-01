@@ -1,7 +1,7 @@
 #include "../include/init.h"
 #include <GL/glut.h>
 
-static void reshape(int width, int height);
+void reshape(int width, int height);
 
 int main(int argc, char **argv)
 {
@@ -16,6 +16,8 @@ int main(int argc, char **argv)
     glutReshapeFunc(reshape);
     glutDisplayFunc(on_display);
 
+    glutTimerFunc(10, on_time, 0);
+
     glClearColor(0, 0, 0, 0);
     glEnable(GL_DEPTH_TEST);
 
@@ -26,11 +28,11 @@ int main(int argc, char **argv)
     return 0;
 }
 
-static void reshape(int width, int height)
+void reshape(int width, int height)
 {
     glViewport(0, 0, width, height);
 
     glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+    glLoadIdentity();    
     gluPerspective(45, (float) width / height, 1, 10);
 }

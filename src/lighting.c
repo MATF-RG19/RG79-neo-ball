@@ -1,4 +1,5 @@
 #include "../include/lighting.h"
+int finish = 0;
 
 
 void set_ball_lighting(void)
@@ -47,4 +48,21 @@ void platform_lighting(void)
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_coef);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_coef);
     glMaterialf(GL_FRONT, GL_SHININESS, shininess);
+}
+
+void end_platform_lighting(void)
+{
+
+    GLfloat ambient_coef[] = { 0.9255 ,0.2314, 0.5137, 1 };
+
+    GLfloat diffuse_coef[] = { 1, 0.1451, 0.498, 1 };
+
+    GLfloat specular_coef[] = { 1, 0.1451, 0.498, 1};
+
+    int shininess = 20;
+    
+    glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient_coef);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_coef);
+    glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_coef);
+    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shininess);
 }

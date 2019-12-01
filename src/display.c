@@ -25,15 +25,28 @@ void on_display(void)
         glRotatef(rot_side,0 ,0,1);
         set_ball_lighting();
         glutSolidSphere(0.25, 50, 30);
-    glPopMatrix();;
-    glPushMatrix();
-        glTranslatef(0, 0.3, 1.5);
-        platform_lighting();
-        glScalef(1.5, 1, 1);
-        glutSolidCube(1);
     glPopMatrix();
+    //make_floor(20);
 
-    make_floor(20);
+    add_platforms(0, 0, 1.5, 1, 1.5, 1, 1);
+    set_mult(0.5);
+    add_rising_platforms(0, -4, 0, 2, 1, 5, 1);
+
+    add_platforms(0, 0, -1.5, 1, 6, 3, 1);
+    
+    //levi put
+    add_platforms(-3.5, 0, -2.25, 1, 1, 3, 2.5);
+
+    add_moving_platforms(0, 0, -4, 1, 2, 3, 1);
+    add_platforms(3.5, 0, -6.5, 1, 1, 3, 4);
+
+    add_platforms(1.5, 0, -8, 1, 4, 3, 1);
+    set_mult(0.65);
+    add_rising_platforms(-1, 2, -8, 1, 1, 0.3, 1);
+
+    add_platforms(-1, 0, -9, 1, 1, 5.59, 1);
+    add_end_platform(-1, 0, -10, 1, 1, 5.59, 1);
+
 
     glutSwapBuffers();
 }

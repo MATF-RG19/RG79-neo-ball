@@ -18,25 +18,29 @@ void on_keyboard(unsigned char key, int x, int y)
         case '1':
             glutFullScreen();
             break;
+        case 'W':
         case 'w':
             zFront += 0.07;
             angle_forw += 2.5; 
             glutPostRedisplay();
             break;
+        case 'S':
         case 's':
             zBack += 0.07;
             angle_forw -=2.5;
             glutPostRedisplay();
             break;
+        case 'A':
         case 'a':
             xLeft += 0.07;
             glutPostRedisplay();
             break;
+        case 'D':
         case 'd':
-        xRight += 0.07;
-        angle_side += 2.5;
-        glutPostRedisplay();
-        break;
+            xRight += 0.07;
+            angle_side += 2.5;
+            glutPostRedisplay();
+            break;
     }
 
 }

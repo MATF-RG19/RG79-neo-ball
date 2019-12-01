@@ -8,5 +8,6 @@
 void set_ball_lighting(void);
 void lighting(void);
 void platform_lighting(void);
+void end_platform_lighting(void);
 
 #endif

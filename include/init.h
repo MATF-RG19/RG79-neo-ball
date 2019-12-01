@@ -7,5 +7,6 @@
 
 #include "keyboard.h"
 #include "display.h"
+#include "timer.h"
 
 #endif
