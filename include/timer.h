@@ -3,6 +3,7 @@
 
 #include <GL/glut.h>
 #include "floor.h"
+#include "move.h"
 
 float elevate;
 void on_time(int val);

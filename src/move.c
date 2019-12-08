@@ -1,0 +1,120 @@
+#include "../include/move.h"
+
+int platform_no = 1;
+float y_up = 0;
+
+float x_moved = 0;
+
+int is_blocked_z = 0;
+int is_blocked_x = 0;
+
+int fall = 0;
+
+
+void check_movement(void)
+{
+    if(z_curr >1.2 && z_curr < 3 && x_curr > -0.8 && x_curr < 0.8)
+    {
+        platform_no = 1;
+
+        if(y_plat1 > -0.48 && z_curr < 1.4)
+            is_blocked_z = 1;
+        else 
+            is_blocked_z = 0;
+        
+    }
+    else if(z_curr <= 1.2 && z_curr > -1 && x_curr > -1.12 && x_curr < 1.12)
+    {
+        platform_no = 2;
+
+        if(y_curr+0.29 < 2 && z_curr < -0.8)
+            is_blocked_z = 1;
+        else
+            is_blocked_z = 0;
+        
+    }
+
+    else if(z_curr <=-1 && z_curr > -1.8 && x_curr > -2.8 && x_curr < 2.8)
+    {
+        platform_no = 3;
+    }
+
+    else if(z_curr <= -1 && z_curr > -3.6 && x_curr <= -2.8 && x_curr > -3.8)
+    {
+        platform_no = 4;
+    }
+
+    else if(z_curr <= -3.6 && z_curr > -4.5 &&((platform_no == 4 && x_plat < -2 && x_curr+1 > x_plat)
+        || (platform_no == 6 && x_curr-1 < x_plat && x_plat > 1.9)))
+    {
+        platform_no = 5;
+    }
+
+    else if(platform_no == 5 && fabs(x_plat-x_curr) > 1){
+        printf("fall\n");
+    }
+
+    else if(z_curr <= -4.5 && z_curr > -8.5 && x_curr > 2.9 && x_curr < 4)
+    {
+        platform_no = 6;
+    }
+
+    else if(z_curr <= -7.6 && z_curr > -8.5 && x_curr <= 2.9 && x_curr >= -0.8)
+    {
+        platform_no = 7;
+
+        if(y_plat2 < 1.85 && y_plat2 > 1.36 && x_curr < -0.3)
+            is_blocked_x = 1;
+        else
+            is_blocked_x = 0;
+        if(!is_blocked_x && x_curr <= -0.6)
+        {
+            fall = 1;
+        }
+    }
+
+    else if(z_curr <= -7.6 && z_curr > -8.5 && x_curr > -1.4 && x_curr<=-0.6 && y_plat2 < 1.4)
+    {
+        platform_no = 8;
+
+        if(y_curr < 2.9 && z_curr <= -8.3)
+            is_blocked_z = 1;
+        else
+            is_blocked_z = 0;
+    }
+
+    else if(z_curr <= -8.5 && z_curr > -10 && x_curr > -1.5 && x_curr < -0.5)
+    {
+        platform_no = 9;
+    }
+
+    else if(z_curr <= -10  && x_curr > -1.5 && x_curr < -0.5)
+    {
+        platform_no = 10;
+        printf("You won!\n");
+        exit(EXIT_SUCCESS);
+    }
+
+    /*else
+    {
+        printf("fall\n");
+    }*/
+}
+
+void ball_movements(void)
+{
+    switch(platform_no)
+    {
+        case 2:
+            y_up = sin(elevate/50.0f)*mult;
+        break;
+
+        case 5:
+            x_moved = 6*fabs(sin(elevate/180.0f));
+            break;
+        case 8:
+            y_up = sin(elevate/50.0f)*mult;
+        break;
+    }
+}
+

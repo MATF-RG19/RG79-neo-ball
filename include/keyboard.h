@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <GL/glut.h>
 
+#include "move.h"
+
 #define ESC 27
 float zFront;
 float angle_forw;

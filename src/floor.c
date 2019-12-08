@@ -1,6 +1,10 @@
 #include "../include/floor.h"
 float mult = 1.0;
 
+float x_plat = 0;
+float y_plat1 = 0;
+float y_plat2 = 0;
+
 void set_mult(float m)
 {
     mult = m;
@@ -33,7 +37,18 @@ void add_platforms(float x, float y, float z, int size, float scaleX, float scal
 void add_rising_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
 {
     glPushMatrix();
-        glTranslatef(x, y+sin(elevate/50.0f)*mult, z);
+        y_plat1 = y+sin(elevate/50.0f)*mult;
+        glTranslatef(x, y_plat1, z);
+        platform_lighting();
+        glScalef(scaleX, scaleY, scaleZ);
+        glutSolidCube(size);
+    glPopMatrix();
+}
+void add_rising_platforms2(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
+{
+    glPushMatrix();
+        y_plat2 = y+sin(elevate/50.0f)*mult;
+        glTranslatef(x, y_plat2, z);
         platform_lighting();
         glScalef(scaleX, scaleY, scaleZ);
         glutSolidCube(size);
@@ -42,7 +57,8 @@ void add_rising_platforms(float x, float y, float z, int size, float scaleX, flo
 void add_moving_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
 {
     glPushMatrix();
-        glTranslatef(x+3*sin(elevate/80.0f), y, z);
+        x_plat = x+6*fabs(sin(elevate/180.0f));
+        glTranslatef(x_plat, y, z);
         platform_lighting();
         glScalef(scaleX, scaleY, scaleZ);
         glutSolidCube(size);

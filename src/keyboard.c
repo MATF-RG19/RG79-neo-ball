@@ -20,8 +20,10 @@ void on_keyboard(unsigned char key, int x, int y)
             break;
         case 'W':
         case 'w':
-            zFront += 0.07;
-            angle_forw += 2.5; 
+            if(is_blocked_z == 0){
+                zFront += 0.07;
+                angle_forw += 2.5;
+            } 
             glutPostRedisplay();
             break;
         case 'S':
@@ -32,7 +34,8 @@ void on_keyboard(unsigned char key, int x, int y)
             break;
         case 'A':
         case 'a':
-            xLeft += 0.07;
+            if(!is_blocked_x)
+                xLeft += 0.07;
             glutPostRedisplay();
             break;
         case 'D':

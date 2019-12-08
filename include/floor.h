@@ -11,7 +11,12 @@ void add_platforms(float x, float y, float z, int size, float scaleX, float scal
 float mult;
 void set_mult(float m);
 void add_rising_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
+void add_rising_platforms2(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
 void add_moving_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
 void add_end_platform(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
+
+float x_plat;
+float y_plat1;
+float y_plat2;
 
 #endif
