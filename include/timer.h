@@ -6,6 +6,7 @@
 #include "move.h"
 
 float elevate;
+float falling_coef;
 void on_time(int val);
 
 #endif

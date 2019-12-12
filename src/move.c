@@ -11,6 +11,16 @@ int is_blocked_x = 0;
 int fall = 0;
 
 
+void fall_func(void)
+{
+    if(y_curr < -3){
+        printf("Game over\n");
+        exit(EXIT_FAILURE);
+    }
+
+    fall = 1;
+}
+
 void check_movement(void)
 {
     if(z_curr >1.2 && z_curr < 3 && x_curr > -0.8 && x_curr < 0.8)
@@ -50,8 +60,13 @@ void check_movement(void)
         platform_no = 5;
     }
 
+    else if (platform_no == 4 && x_plat >-2 && z_curr <= -3.6)
+    {
+        fall_func();
+    }
+
     else if(platform_no == 5 && fabs(x_plat-x_curr) > 1){
-        printf("fall\n");
+        fall_func();
     }
 
     else if(z_curr <= -4.5 && z_curr > -8.5 && x_curr > 2.9 && x_curr < 4)
@@ -67,10 +82,6 @@ void check_movement(void)
             is_blocked_x = 1;
         else
             is_blocked_x = 0;
-        if(!is_blocked_x && x_curr <= -0.6)
-        {
-            fall = 1;
-        }
     }
 
     else if(z_curr <= -7.6 && z_curr > -8.5 && x_curr > -1.4 && x_curr<=-0.6 && y_plat2 < 1.4)
@@ -83,10 +94,26 @@ void check_movement(void)
             is_blocked_z = 0;
     }
 
+    else if(platform_no == 8 && (x_curr <= -1.4 || z_curr > -7.6))
+    {
+        fall_func();
+    }
+
+    else if(platform_no == 7 && x_curr<=-6)
+    {
+        fall_func();
+    }
+
     else if(z_curr <= -8.5 && z_curr > -10 && x_curr > -1.5 && x_curr < -0.5)
     {
         platform_no = 9;
     }
+
+    else if (platform_no == 9 && z_curr > -8.5)
+    {
+        platform_no = 8;
+    }
+    
 
     else if(z_curr <= -10  && x_curr > -1.5 && x_curr < -0.5)
     {
@@ -95,10 +122,11 @@ void check_movement(void)
         exit(EXIT_SUCCESS);
     }
 
-    /*else
+    else if(platform_no!=5 && platform_no !=7 && platform_no != 8)
     {
-        printf("fall\n");
-    }*/
+        fall_func();
+    }
+    
 }
 
 void ball_movements(void)

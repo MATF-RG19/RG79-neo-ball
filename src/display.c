@@ -69,13 +69,18 @@ void on_display(void)
             y_curr = 3;
         }
         z_curr = zPos-zFront+zBack;
+
+        if(fall)
+        {
+            y_curr -=0.5 * 9.81 * falling_coef*falling_coef;
+        }
+
         glTranslatef(x_curr, y_curr, z_curr);
         glRotatef(rot,1,0,0);
         glRotatef(rot_side,0 ,0,1);
         set_ball_lighting();
         glutSolidSphere(0.25, 50, 30);
     glPopMatrix();
-    //make_floor(20);
 
     add_platforms(0, 0, 1.5, 1, 1.5, 1, 1);
     set_mult(0.5);
@@ -96,6 +101,7 @@ void on_display(void)
     add_platforms(-1, 0, -9, 1, 1, 5.59, 1);
     add_end_platform(-1, 0, -10, 1, 1, 5.59, 1);
 
+    make_sky();
 
     glutSwapBuffers();
 }

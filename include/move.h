@@ -13,6 +13,7 @@
 
 void check_movement(void);
 void ball_movements(void);
+void fall_func(void);
 int platform_no;
 float y_up;
 float x_moved;
@@ -20,4 +21,5 @@ float x_moved;
 int is_blocked_z;
 int is_blocked_x;
 
+int fall;
 #endif

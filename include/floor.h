@@ -5,6 +5,7 @@
 #include <math.h>
 #include "timer.h"
 #include "lighting.h"
+#include "image.h"
 
 void make_floor(int a);
 void add_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
@@ -14,6 +15,9 @@ void add_rising_platforms(float x, float y, float z, int size, float scaleX, flo
 void add_rising_platforms2(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
 void add_moving_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
 void add_end_platform(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
+
+void set_textures(void);
+void make_sky(void);
 
 float x_plat;
 float y_plat1;
