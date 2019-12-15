@@ -18,6 +18,7 @@ float z2_cam = 0;
 
 void on_display(void)
 {
+    
     float rot;
     float rot_side;
 
@@ -101,7 +102,9 @@ void on_display(void)
     add_platforms(-1, 0, -9, 1, 1, 5.59, 1);
     add_end_platform(-1, 0, -10, 1, 1, 5.59, 1);
 
-    make_sky();
+    make_floor();
+
+    //make_sky();
 
     glutSwapBuffers();
 }

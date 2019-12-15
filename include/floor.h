@@ -7,7 +7,7 @@
 #include "lighting.h"
 #include "image.h"
 
-void make_floor(int a);
+void make_floor();
 void add_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ);
 float mult;
 void set_mult(float m);

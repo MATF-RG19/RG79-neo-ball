@@ -36,11 +36,11 @@ void lighting(void)
 
 void platform_lighting(void)
 {
-    GLfloat ambient_coef[] = { 0, 0.36, 0.65, 1 };
+    GLfloat ambient_coef[] = { 0.3098, 0.2588, 0.7098, 1 };
 
-    GLfloat diffuse_coef[] = { 0 ,0.45,0.81, 1 };
+    GLfloat diffuse_coef[] = { 0.1961 ,0.1647 ,0.4549, 1 };
 
-    GLfloat specular_coef[] = { 0 ,0.45,0.81, 1};
+    GLfloat specular_coef[] = {  0.3098, 0.2588, 0.7098, 1};
 
     int shininess = 20;
     
@@ -53,11 +53,11 @@ void platform_lighting(void)
 void end_platform_lighting(void)
 {
 
-    GLfloat ambient_coef[] = { 0.9255 ,0.2314, 0.5137, 1 };
+    GLfloat ambient_coef[] = { 0.8431 ,0.4549, 0.6549, 1 };
 
-    GLfloat diffuse_coef[] = { 1, 0.1451, 0.498, 1 };
+    GLfloat diffuse_coef[] = { 0.7843, 0.2549, 5255, 1 };
 
-    GLfloat specular_coef[] = { 1, 0.1451, 0.498, 1};
+    GLfloat specular_coef[] = { 0.8431 ,0.4549, 0.6549, 1};
 
     int shininess = 20;
     

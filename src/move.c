@@ -99,7 +99,7 @@ void check_movement(void)
         fall_func();
     }
 
-    else if(platform_no == 7 && x_curr<=-6)
+    else if(platform_no == 7 && (x_curr<=-0.6 || z_curr > -7.6))
     {
         fall_func();
     }

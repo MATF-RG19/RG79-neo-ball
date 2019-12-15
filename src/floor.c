@@ -1,6 +1,7 @@
 #include "../include/floor.h"
 
-#define FILENAME0 "sky.gif"
+#define FILENAME0 "./src/sky.bmp"
+#define FILENAME1 "./src/floor.bmp"
 
 GLuint names[2];
 
@@ -33,13 +34,30 @@ void set_textures(void)
 
     glBindTexture(GL_TEXTURE_2D, names[0]);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_CLAMP);
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_CLAMP);
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
+                 image->width, image->height, 0,
+                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    image_read(image, FILENAME1);
+
+    glBindTexture(GL_TEXTURE_2D, names[1]);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
                  image->width, image->height, 0,
                  GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
@@ -52,37 +70,45 @@ void set_textures(void)
 void make_sky(void)
 {
     glBindTexture(GL_TEXTURE_2D, names[0]);
-    glBegin(GL_QUADS);
-        //glNormal3f(0, 0, 1);
+    glBegin(GL_POLYGON);
+        glNormal3f(-1,0,0); 
 
-        glTexCoord2f(0, 0);
-        glVertex3f(-1, -1, 0);
+        glTexCoord2f(0,0);
+        glVertex3f(25,50, -10);
 
         glTexCoord2f(1, 0);
-        glVertex3f(1, -1, 0);
+        glVertex3f(25,50, 10);
 
         glTexCoord2f(1, 1);
-        glVertex3f(1, 1, 0);
+        glVertex3f(25, 50, 10);      
 
-        glTexCoord2f(0, 1);
-        glVertex3f(-1, 1, 0);
+        glTexCoord2f(0, 1);                  
+        glVertex3f(25, 50, -10);
     glEnd();
+    glBindTexture(GL_TEXTURE_2D,0);
+    
 
 }
 
-void make_floor(int a)
+void make_floor()
 {
-    glColor3f(0.75, 0.75, 0.75);
-    glBegin(GL_LINES);
-        for(int i=-2*a;i<=2*a;i++)
-        {
-            glVertex3f((float)i,-0.4,(float)-a);
-            glVertex3f((float)i,-0.4,(float)a);
+    glBindTexture(GL_TEXTURE_2D, names[1]);
+    glBegin(GL_QUADS);
+        glNormal3f(0, 1, 0);
 
-            glVertex3f((float)-a,-0.4,(float)i);
-            glVertex3f((float)a,-0.4,(float)i);
-        }
+        glTexCoord2f(0, 35);
+        glVertex3f(-30, 0, -80);
+
+        glTexCoord2f(0, 0);
+        glVertex3f(-60, 0, 60);
+
+        glTexCoord2f(10, 35);
+        glVertex3f(30, 0, -80);
+
+        glTexCoord2f(20, 0);
+        glVertex3f(60, 0, 60);
     glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void add_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
