@@ -1,6 +1,8 @@
 #include "../include/move.h"
 
+/*oznaka platforme*/
 int platform_no = 1;
+
 float y_up = 0;
 
 float x_moved = 0;
@@ -8,6 +10,7 @@ float x_moved = 0;
 int is_blocked_z = 0;
 int is_blocked_x = 0;
 
+/*indikator pada*/
 int fall = 0;
 
 
@@ -21,12 +24,15 @@ void fall_func(void)
     fall = 1;
 }
 
+/*brute force provera kretanja i dozvoljenih pozicija loptice*/
 void check_movement(void)
 {
     if(z_curr >1.2 && z_curr < 3 && x_curr > -0.8 && x_curr < 0.8)
     {
         platform_no = 1;
 
+        /*loptica ne bi smela da predje na platformu
+         dok ona nema istu y-koordinatu kao loptica */
         if(y_plat1 > -0.48 && z_curr < 1.4)
             is_blocked_z = 1;
         else 
@@ -37,6 +43,8 @@ void check_movement(void)
     {
         platform_no = 2;
 
+        /*loptica ne bi smela da predje na sledecu platformu
+         dok platforma nema dovoljnu y-koordinatu za prelaz */
         if(y_curr+0.29 < 2 && z_curr < -0.8)
             is_blocked_z = 1;
         else
@@ -78,6 +86,8 @@ void check_movement(void)
     {
         platform_no = 7;
 
+        /*loptica ne bi smela da predje na platformu
+         dok ona nema istu y-koordinatu kao loptica */
         if(y_plat2 < 1.85 && y_plat2 > 1.36 && x_curr < -0.3)
             is_blocked_x = 1;
         else
@@ -88,6 +98,8 @@ void check_movement(void)
     {
         platform_no = 8;
 
+        /*loptica ne bi smela da predje na sledecu platformu
+         dok platforma nema dovoljnu y-koordinatu za prelaz */
         if(y_curr < 2.9 && z_curr <= -8.3)
             is_blocked_z = 1;
         else
@@ -99,7 +111,7 @@ void check_movement(void)
         fall_func();
     }
 
-    else if(platform_no == 7 && (x_curr<=-0.6 || z_curr > -7.6))
+    else if(platform_no == 7 && (x_curr<=-0.6 || z_curr > -7.6 || z_curr <=-8.5))
     {
         fall_func();
     }
@@ -129,6 +141,7 @@ void check_movement(void)
     
 }
 
+/*loptica se krece gore/dole ili levo/desno zajedno sa platformom*/
 void ball_movements(void)
 {
     switch(platform_no)

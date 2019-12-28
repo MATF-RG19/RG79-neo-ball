@@ -7,7 +7,10 @@ GLuint names[2];
 
 float mult = 1.0;
 
+/*promenljiva koja opisuje kretanje platforme desno-levo*/
 float x_plat = 0;
+
+/*promenljive koje opsuju kretanje podizucih/spustajucih platformi*/
 float y_plat1 = 0;
 float y_plat2 = 0;
 
@@ -16,6 +19,7 @@ void set_mult(float m)
     mult = m;
 }
 
+/*inicijalizacija tekstura*/
 void set_textures(void)
 {
     Image * image;
@@ -67,29 +71,31 @@ void set_textures(void)
     image_done(image);
 }
 
+/*postavljanje neba*/
 void make_sky(void)
 {
     glBindTexture(GL_TEXTURE_2D, names[0]);
-    glBegin(GL_POLYGON);
-        glNormal3f(-1,0,0); 
+    glBegin(GL_QUADS);
+       glNormal3f(0, 0, 1);
 
-        glTexCoord2f(0,0);
-        glVertex3f(25,50, -10);
+        glTexCoord2f(0, 20);
+        glVertex3f(-60, 60, z_curr-6);
 
-        glTexCoord2f(1, 0);
-        glVertex3f(25,50, 10);
+        glTexCoord2f(0, 0);
+        glVertex3f(-60, -10, z_curr-6);
 
-        glTexCoord2f(1, 1);
-        glVertex3f(25, 50, 10);      
+        glTexCoord2f(20, 20);
+        glVertex3f(60, 60, z_curr-6);
 
-        glTexCoord2f(0, 1);                  
-        glVertex3f(25, 50, -10);
+        glTexCoord2f(20, 0);
+        glVertex3f(60, -10, z_curr-6);
     glEnd();
     glBindTexture(GL_TEXTURE_2D,0);
     
 
 }
 
+/*postavljanje poda*/
 void make_floor()
 {
     glBindTexture(GL_TEXTURE_2D, names[1]);
@@ -111,6 +117,7 @@ void make_floor()
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+/*f-ja za dodavanje staticnih platformi*/
 void add_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
 {
     glPushMatrix();
@@ -121,6 +128,7 @@ void add_platforms(float x, float y, float z, int size, float scaleX, float scal
     glPopMatrix();
 }
 
+/*f-je za dodavanje pomerajucih platformi*/
 void add_rising_platforms(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
 {
     glPushMatrix();
@@ -152,6 +160,7 @@ void add_moving_platforms(float x, float y, float z, int size, float scaleX, flo
     glPopMatrix();
 }
 
+/*dodavanje ciljne platforme*/
 void add_end_platform(float x, float y, float z, int size, float scaleX, float scaleY, float scaleZ)
 {
     glPushMatrix();

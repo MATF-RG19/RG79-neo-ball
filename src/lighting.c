@@ -1,7 +1,6 @@
 #include "../include/lighting.h"
-int finish = 0;
 
-
+/*podesavanje boje loptice*/
 void set_ball_lighting(void)
 {
     GLfloat ambient_coef[] = { 0.9765, 0.2392, 0.2627, 1 };
@@ -18,6 +17,7 @@ void set_ball_lighting(void)
     glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 }
 
+/*postavljanje osvetljenja*/
 void lighting(void)
 {
     glEnable(GL_LIGHTING);
@@ -34,6 +34,7 @@ void lighting(void)
 	glLightfv(GL_LIGHT0, GL_SPECULAR, specular);
 }
 
+/*postavljanje boje za platforme*/
 void platform_lighting(void)
 {
     GLfloat ambient_coef[] = { 0.3098, 0.2588, 0.7098, 1 };
@@ -50,6 +51,7 @@ void platform_lighting(void)
     glMaterialf(GL_FRONT, GL_SHININESS, shininess);
 }
 
+/*postavljanje boje za ciljnu platformu*/
 void end_platform_lighting(void)
 {
 

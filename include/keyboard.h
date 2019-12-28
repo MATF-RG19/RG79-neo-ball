@@ -9,13 +9,13 @@
 
 #define ESC 27
 float zFront;
-float angle_forw;
-float angle_side;
+float angle;
 float zBack;
 float xLeft;
 float xRight;
-float yUp;
-float yDown;
+int side;
+int ind_fb;
+int ind_lr;
 void on_keyboard(unsigned char key, int x, int y);
 
 #endif

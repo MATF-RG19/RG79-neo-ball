@@ -8,5 +8,14 @@ HEADER  = include/init.h include/display.h include/lighting.h include/floor.h in
 $(PROGRAM): $(PROG) $(HEADER)
 	$(CC) -o $(PROGRAM) $(PROG) $(LDFLAGS) 
 
-run: 
+.PHONY: run makerun clean
+
+run:
 	./$(PROGRAM)
+
+makerun:
+	make
+	make run
+
+clean:
+	rm -f $(PROGRAM) ./src/*.o
